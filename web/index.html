@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/web/styles.css" />
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  </head>
+  <body>
+    <div class="bg-decor"></div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-text">
+            <h1 class="title">Data Visualizer</h1>
+            <p class="subtitle">Upload. Explore. Visualize. Share.</p>
+          </div>
+        </div>
+        <nav class="actions">
+          <a class="btn btn-ghost" href="#chart">Go to Chart</a>
+          <a class="btn btn-primary" href="#upload">Start</a>
+          <button id="logout-btn" class="btn btn-ghost">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main-grid">
+      <aside class="card side">
+        <section class="section" id="upload">
+          <div class="section-header">
+            <h2>Upload CSV</h2>
+            <span class="badge">Local file only</span>
+          </div>
+          <form id="upload-form" class="stack">
+            <label class="file-input">
+              <input type="file" id="csv-file" accept=".csv" />
+              <span class="file-cta">Choose CSV</span>
+              <span class="file-name" id="file-name">No file selected</span>
+            </label>
+            <button class="btn btn-primary" type="submit">Upload</button>
+            <div id="upload-status" class="muted"></div>
+          </form>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h2>Charts</h2>
+            <span class="badge">Interactive</span>
+          </div>
+          <div class="controls grid">
+            <label>
+              <span>Chart</span>
+              <select id="chart-type">
+                <option>Histogram</option>
+                <option>Bar graph</option>
+                <option>Scatter</option>
+                <option>Pie Chart</option>
+                <option>Line chart</option>
+                <option>Box Plot</option>
+              </select>
+            </label>
+
+            <label>
+              <span>X</span>
+              <select id="x-select"></select>
+            </label>
+
+            <label>
+              <span>Y</span>
+              <select id="y-select"></select>
+            </label>
+
+            <label>
+              <span>Color</span>
+              <select id="color-select"></select>
+            </label>
+
+            <label id="barmode-wrap" class="hidden">
+              <span>Bar Type</span>
+              <select id="barmode-select">
+                <option>overlay</option>
+                <option>group</option>
+                <option>relative</option>
+              </select>
+            </label>
+
+            <div class="actions-row">
+              <button id="plot-btn" class="btn btn-primary">Generate</button>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <section class="card chart-card" id="chart-card">
+        <div class="section-header">
+          <h2>Visualization</h2>
+          <span class="badge badge-soft">Powered by Plotly</span>
+        </div>
+        <div id="chart" class="chart"></div>
+      </section>
+
+      <section class="card data-card">
+        <div class="section-header">
+          <h2>Dataframe Preview</h2>
+          <span class="badge badge-soft">First 500 rows</span>
+        </div>
+        <div id="df-note" class="muted">
+          Click columns to sort using your browser tools.
+        </div>
+        <div id="dataframe" class="table-wrap"></div>
+      </section>
+
+      <section class="card data-card">
+        <div class="section-header">
+          <h2>Describe (Numeric)</h2>
+          <span class="badge badge-soft">Summary stats</span>
+        </div>
+        <div id="describe" class="table-wrap"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <span class="muted">© <span id="year"></span> Data Visualizer · Built with Flask & Plotly</span>
+    </footer>
+
+    <script>
+      document.getElementById('csv-file').addEventListener('change', (e) => {
+        const files = e.target.files;
+        document.getElementById('file-name').textContent = files && files[0] ? files[0].name : 'No file selected';
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="/web/app.js"></script>
+  </body>
+  </html>
+
+

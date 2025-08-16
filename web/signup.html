@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up - Data Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/web/styles.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-box">
+        <div class="auth-header">
+          <h1>Create an Account</h1>
+          <p>Get started with Data Visualizer.</p>
+        </div>
+        <form id="signup-form" class="stack">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Choose a username" required />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Create a password" required />
+          </div>
+          <button class="btn btn-primary" type="submit">Sign Up</button>
+          <div id="signup-status" class="muted"></div>
+          <p class="auth-switch">
+            Already have an account? <a href="/">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+    <script src="/web/signup.js"></script>
+  </body>
+</html>
